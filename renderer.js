@@ -458,3 +458,23 @@ function loadKeyReference(){
   SH.download("keyReference.csv",loadC,SH.load_progress);
 
 };
+
+// store returned list in a variable accessible to the renderer:
+function loadImages(image_urls){
+
+  for(var ix = 0; ix < image_urls.length; ix++){
+
+    var img = new Image();
+    img.src = image_urls[ix];
+    preloaded_images[image_urls[ix]] = img;
+
+  }
+
+  return image_urls
+
+};
+
+// called by the main renderer to get a loaded image:
+function retrieveImage(url){
+  return preloaded_images[url];
+}
